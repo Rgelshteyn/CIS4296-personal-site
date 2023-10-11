@@ -26,17 +26,37 @@
 
     <!-- Remove this and fill in your name & photo in the required areas -->
     <script>
-      fetch('https://randomuser.me/api/?inc=name,picture')
-        .then((response) => response.json())
-        .then(({ results }) => results[0])
-        .then(({ name, picture }) => {
-          document.querySelector('#name').innerText = name.first
-          document.querySelector(
-            '.navbar-brand'
-          ).innerText = `${name.first} ${name.last}`
-          document.title = `${name.first} ${name.last} Personal Site`
-          document.querySelector('#profilepic').src = picture.large
-        })
+      // fetch('https://randomuser.me/api/?inc=name,picture')
+      //   .then((response) => response.json())
+      //   .then(({ results }) => results[0])
+      //   .then(({ name, picture }) => {
+      //     document.querySelector('#name').innerText = name.first
+      //     document.querySelector(
+      //       '.navbar-brand'
+      //     ).innerText = `${name.first} ${name.last}`
+      //     document.title = `${name.first} ${name.last} Personal Site`
+      //     document.querySelector('#profilepic').src = picture.large
+      //   })
+
+      const profileInfo = {
+        name: "Raphael Gelshteyn",
+        introduction: "Senior IST Major",
+        university: "Temple University",
+        skills: [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "C#",
+          "SQL",
+        ],
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".navbar-brand").innerText = profileInfo.name;
+        document.querySelector("#name").innerText = profileInfo.name;
+        document.querySelector(".text-primary").innerText = profileInfo.introduction;
+        document.querySelector(".text-opacity-75").innerText = profileInfo.university;
+      });
     </script>
 
     <link href="styles/theme.css" rel="stylesheet" />
@@ -50,7 +70,7 @@
     <nav class="navbar navbar-expand-lg bg-primary fixed-top">
       <div class="container-fluid p-2 px-lg-2 py-lg-0">
         <!-- Set Name Here -->
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="#home"></a>
         <button
           class="navbar-toggler bg-white"
           type="button"
@@ -82,6 +102,10 @@
                 >Contact</a
               >
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#about-me">About Me</a>
+            </li>
+            
           </ul>
         </div>
       </div>
@@ -333,6 +357,24 @@
         </div>
       </div>
     </div>
+
+<div class="container section min-vh-100 d-flex justify-content-center flex-column align-items-center" id="about-me">
+  <div class="row mx-auto">
+    <h4 class="h1 font-weight-bold mx-auto text-center">About Me</h4>
+  </div>
+  <div class="row mx-auto">
+    <p class="mx-auto text-center text-opacity-75 text-primary">
+      Hi there! I'm a 21-year-old senior majoring in Information Science and Technology. When I'm not buried in code or studying, you can find me spending quality time with my family, which means the world to me.
+
+      I'm a huge sports enthusiast, and two of my greatest passions are soccer and basketball. Whether it's watching a thrilling match or getting out on the court or field to play, I find joy and excitement in both. These sports bring out the competitive spirit in me and help me stay active and energized.
+
+      I believe in the power of technology to make a positive impact on the world, and I'm constantly exploring new ways to apply my skills and knowledge to make a difference.
+
+      Thanks for visiting my personal website, and I hope you enjoy exploring more about my journey and interests!
+    </p>
+  </div>
+</div>
+
     <div
       class="container section min-vh-100 d-flex justify-content-center flex-column align-items-center"
       id="contact"
@@ -348,7 +390,7 @@
         </h5>
       </div>
       <div class="row my-4 contact-wrapper gap-3">
-        <a href="mailto:johndoe@gmail.com" class="col text-black">
+        <a href="mailto:raphaelgelshteyn@gmail.com" class="col text-black">
           <iconify-icon
             icon="logos:google-gmail"
             width="60"
@@ -358,17 +400,7 @@
             title="Email"
           ></iconify-icon>
         </a>
-        <a href="https://www.linkedin.com/in/johndoe/" class="col"
-          ><iconify-icon
-            icon="skill-icons:linkedin"
-            width="60"
-            height="60"
-            data-bs-toggle="tooltip"
-            data-placement="top"
-            title="LinkedIn"
-          ></iconify-icon>
-        </a>
-        <a href="https://github.com/johndoe" class="col"
+        <a href="https://github.com/Rgelshteyn" class="col"
           ><iconify-icon
             icon="skill-icons:github-dark"
             width="60"
@@ -378,6 +410,9 @@
             title="GitHub"
           ></iconify-icon>
         </a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
+          Contact Me
+        </button>
       </div>
       <div class="row mt-5">
         <div>
@@ -392,6 +427,39 @@
         </div>
       </div>
     </div>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contactModalLabel">Contact Me</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="4"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script>
       const tooltipTriggerList = document.querySelectorAll(
